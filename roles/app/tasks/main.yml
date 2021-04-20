@@ -1,0 +1,21 @@
+---
+- name: Login to DockerHub
+  docker_login:
+    username: "{{ docker_login }}"
+    password: "{{ docker_pass }}"
+  become: true
+
+- name: Pull the image
+  docker_image:
+    name: "{{ app_image }}"
+    source: pull
+    state: present
+  become: true
+
+- name: Create containers
+  docker_container:
+    name: "{{ default_app_name }}{{ item }}"
+    image: "{{ app_image }}"
+    state: present
+  with_sequence: count={{ container_num }}
+  become: true

@@ -1,0 +1,11 @@
+---
+- name: Add epel-release repo
+  yum:
+    name: epel-release
+    state: present
+  become: true
+
+- name: Update all packages
+  yum:
+    name: "*"
+    state: present

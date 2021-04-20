@@ -1,0 +1,15 @@
+---
+local:
+  hosts:
+    localhost:
+      ansible_host: 127.0.0.1
+
+workers:
+  hosts:
+    slave-01:
+      ansible_host: 192.168.56.102
+
+test-env:
+  hosts:
+    slave-01-test:
+      ansible_host: 192.168.56.103

@@ -1,0 +1,17 @@
+---
+- name: Install nginx as load load balancer and app
+  hosts: test-env
+
+  vars_files:
+    - vault.yml
+
+  vars:
+    creds:
+      docker_login: "{{ docker_login }}"
+      docker_pass: "{{ docker_pass }}"
+
+  roles:
+    - common
+    - docker
+#    - nginx
+    - app
