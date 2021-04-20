@@ -1,2 +1,55 @@
 ---
-- include_tasks:
+- include_role:
+    name: docker
+
+- name: Create build dir
+  file:
+    path: /tmp/build
+    state: directory
+    owner: root
+    group: root
+  become: true
+
+- name: Copy nginx Dockerfile
+  copy:
+    src: ./defaults/Dockerfile
+    dest: /tmp/build/Dockerfile
+    owner: root
+    group: root
+  become: true
+
+- name: Copy nginx.conf template
+  template:
+    src: nginx.j2.conf
+    dest: /tmp/build/nginx.conf
+    owner: root
+    group: root
+  become: true
+
+- name: Build nginx image
+  docker_image:
+    name: nginx_balancer
+    build:
+      path: /tmp/build/Dockerfile
+    source: build
+  become: true
+
+- name: Create network
+  docker_network:
+    name: app_net
+    ipam_config:
+      - subnet: "{{ mask }}.0/24"
+        gateway: "{{ mask }}.1"
+  become: true
+
+- name: Run nginx
+  docker_container:
+    name: nginx
+    image: nginx_balancer
+    state: started
+    networks:
+      - name: app_net
+        ipv4_address: "{{ mask }}.100"
+    ports:
+      - "80:80"
+  become: true

@@ -1,4 +1,7 @@
 ---
+- include_role:
+    name: docker
+
 - name: Login to DockerHub
   docker_login:
     username: "{{ docker_login }}"
@@ -7,17 +10,20 @@
 
 - name: Pull the image
   docker_image:
-    name: "{{ app_image }}"
+    name: "{{ config.app_image }}"
     source: pull
     state: present
   become: true
 
 - name: Create containers
   docker_container:
-    name: "{{ default_app_name }}{{ item }}"
-    image: "{{ app_image }}"
+    name: "{{ config.default_app_name }}{{ item }}"
+    image: "{{ config.app_image }}"
     ports:
       - "500{{ item }}:5000"
+    container_default_behavior: compatibility
     state: started
-  with_sequence: count={{ container_num }}
+    
+  with_sequence: count={{ config.container_num }}
   become: true
+

@@ -1,4 +1,0 @@
----
-default_app_name: "app_"
-app_image: "bubblebee/exam:app-latest"
-container_num: 3

@@ -9,9 +9,12 @@
     creds:
       docker_login: "{{ docker_login }}"
       docker_pass: "{{ docker_pass }}"
+    config:
+      container_num: 3
+      default_app_name: "app_"
+      app_image: "bubblebee/exam:app-latest"
+      mask: "172.4.20"
 
   roles:
-    - common
-    - docker
-#    - nginx
+    - nginx
     - app
