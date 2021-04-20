@@ -16,6 +16,8 @@
   docker_container:
     name: "{{ default_app_name }}{{ item }}"
     image: "{{ app_image }}"
-    state: present
+    ports:
+      - "500{{ item }}:5000"
+    state: started
   with_sequence: count={{ container_num }}
   become: true
