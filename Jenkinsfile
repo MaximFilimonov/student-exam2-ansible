@@ -18,6 +18,7 @@ pipeline {
             steps {
                 ansiblePlaybook(
                     playbook: 'test.yml',
+                    credentialsId: 'ansible_ssh',
                     disableHostKeyChecking: true,
                     inventory: 'hosts'
                 )
