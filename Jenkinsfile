@@ -18,6 +18,7 @@ pipeline {
             steps {
                 ansiblePlaybook(
                     playbook: 'test.yml',
+                    disableHostKeyChecking: true,
                     inventory: 'hosts'
                 )
             }
