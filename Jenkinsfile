@@ -5,18 +5,20 @@ pipeline {
         retry(3)
     }
     stages {
-//        stage('Run playbook') {
-//            steps {
-//                ansiblePlaybook(
-//               
-//                )
-//            }
-//        }
+/*        stage('Run playbook') {
+            steps {
+                ansiblePlaybook(
+                    credentialsId: 'ansible_ssh',
+                    playbook: 'playbook.yml',
+                    inventory: 'hosts'
+                )
+            }
+        } */
         stage('Check http answer') {
             steps {
                 ansiblePlaybook(
-                    playbook: "test.yml",
-                    inventory: "hosts"
+                    playbook: 'test.yml',
+                    inventory: 'hosts'
                 )
             }
         }
