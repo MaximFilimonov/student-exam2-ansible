@@ -5,7 +5,7 @@ pipeline {
         retry(3)
     }
     stages {
-/*        stage('Run playbook') {
+        stage('Run playbook') {
             steps {
                 ansiblePlaybook(
                     credentialsId: 'ansible_ssh',
@@ -13,13 +13,13 @@ pipeline {
                     inventory: 'hosts'
                 )
             }
-        } */
+        } 
         stage('Check http answer') {
             steps {
                 ansiblePlaybook(
-                    playbook: 'test.yml',
                     credentialsId: 'ansible_ssh',
                     disableHostKeyChecking: true,
+                    playbook: 'test.yml',
                     inventory: 'hosts'
                 )
             }
