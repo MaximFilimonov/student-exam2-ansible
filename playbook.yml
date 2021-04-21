@@ -1,6 +1,6 @@
 ---
 - name: Install nginx as load load balancer and app
-  hosts: test-env
+  hosts: workers
 
   vars_files:
     - vault.yml

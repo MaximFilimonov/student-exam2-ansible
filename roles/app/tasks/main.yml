@@ -23,7 +23,9 @@
       - "500{{ item }}:5000"
     container_default_behavior: compatibility
     state: started
-    
+    networks:
+      - name: app_net
+        ipv4_address: "{{ config.mask }}.10{{ item }}"
   with_sequence: count={{ config.container_num }}
   become: true
 
