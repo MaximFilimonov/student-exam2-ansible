@@ -6,11 +6,11 @@ pipeline {
     }
     stages {
         stage('Run playbook') {
-            steps {
+//            steps {
 //                ansiblePlaybook(
                
 //                )
-            }
+//            }
         }
         stage('Check http answer') {
             steps {
