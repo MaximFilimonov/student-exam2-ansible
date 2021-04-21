@@ -7,9 +7,9 @@ pipeline {
     stages {
         stage('Run playbook') {
             steps {
-#                ansiblePlaybook(
-#                
-#                )
+//                ansiblePlaybook(
+               
+//                )
             }
         }
         stage('Check http answer') {
