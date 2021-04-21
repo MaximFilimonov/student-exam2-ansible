@@ -1,0 +1,7 @@
+---
+- name: Test http
+  hosts: workers
+  tasks:
+  - name:
+    uri:
+      url: "http://{{ ansible_host }}"
