@@ -9,6 +9,7 @@ pipeline {
             steps {
                 ansiblePlaybook(
                     credentialsId: 'ansible_ssh',
+                    disableHostKeyChecking: true,
                     playbook: 'playbook.yml',
                     inventory: 'hosts'
                 )
