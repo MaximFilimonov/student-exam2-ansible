@@ -15,7 +15,7 @@ pipeline {
         stage('Check http answer') {
             steps {
                 ansiblePlaybook(
-                    playbook: "test.yml"
+                    playbook: "test.yml",
                     inventory: "hosts"
                 )
             }
